@@ -4,7 +4,9 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install --no-cache-dir \
+# Upgrade pip + increase timeout (VERY IMPORTANT)
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir --default-timeout=1000 \
     numpy \
     pandas \
     tensorflow \
