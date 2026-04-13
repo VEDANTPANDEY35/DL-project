@@ -14,6 +14,13 @@ pipeline {
             }
         }
 
+        stage('Show Version') {
+            steps {
+                echo "📦 Showing current version from version.txt"
+                bat 'type version.txt'
+            }
+        }
+
         stage('Stop Old Container') {
             steps {
                 bat 'docker stop %CONTAINER_NAME% || exit 0'
@@ -23,6 +30,7 @@ pipeline {
 
         stage('Run Container') {
             steps {
+                echo "🚀 Deploying container"
                 bat 'docker run -d -p 8888:8888 --name %CONTAINER_NAME% %IMAGE_NAME%'
             }
         }
@@ -30,10 +38,10 @@ pipeline {
 
     post {
         success {
-            echo 'Deployment Successful 🚀'
+            echo '✅ Deployment Successful 🚀'
         }
         failure {
-            echo 'Deployment Failed ❌'
+            echo '❌ Deployment Failed'
         }
     }
 }
