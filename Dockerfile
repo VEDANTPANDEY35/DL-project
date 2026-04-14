@@ -2,9 +2,7 @@ FROM python:3.9-slim
 
 WORKDIR /app
 
-COPY . /app
-
-# Upgrade pip + increase timeout (VERY IMPORTANT)
+# Install dependencies FIRST (important for caching)
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir --default-timeout=1000 \
     numpy \
@@ -12,6 +10,9 @@ RUN pip install --upgrade pip && \
     tensorflow \
     keras \
     jupyter
+
+# Do NOT rely on COPY for live updates (but keep it for first build)
+COPY . /app
 
 EXPOSE 8888
 
