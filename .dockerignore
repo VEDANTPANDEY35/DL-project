@@ -1,0 +1,28 @@
+__pycache__/
+
+*.pyc
+
+.ipynb_checkpoints/
+
+venv/
+
+.env
+ 
+# Git files
+
+.git
+
+.gitignore
+ 
+# Mac files
+
+.DS_Store
+ 
+# Large unnecessary files
+
+*.log
+ 
+# Optional (if not needed)
+
+node_modules/
+ 
